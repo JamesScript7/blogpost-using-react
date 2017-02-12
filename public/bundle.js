@@ -65,21 +65,17 @@
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	var _Screen = __webpack_require__(/*! ./Screen1.jsx */ 272);
+	var _BlogPosts = __webpack_require__(/*! ./BlogPosts.jsx */ 272);
 	
-	var _Screen2 = _interopRequireDefault(_Screen);
+	var _BlogPosts2 = _interopRequireDefault(_BlogPosts);
 	
-	var _Screen3 = __webpack_require__(/*! ./Screen2.jsx */ 273);
+	var _AllBlogPosts = __webpack_require__(/*! ./AllBlogPosts.jsx */ 274);
 	
-	var _Screen4 = _interopRequireDefault(_Screen3);
-	
-	var _Screen5 = __webpack_require__(/*! ./Screen3.jsx */ 274);
-	
-	var _Screen6 = _interopRequireDefault(_Screen5);
+	var _AllBlogPosts2 = _interopRequireDefault(_AllBlogPosts);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	__webpack_require__(/*! ./css/style.css */ 277);
+	__webpack_require__(/*! ./css/style.css */ 275);
 	
 	var store = (0, _redux.createStore)(_reducers2.default, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 	
@@ -90,32 +86,25 @@
 			_react2.default.createElement(
 				'h1',
 				null,
-				'HOME'
+				'"It\'s Blargin\' time!"'
 			),
 			_react2.default.createElement(
 				_reactRouter.Link,
 				{ to: '/' },
-				'Home?'
+				'Home'
 			),
 			_react2.default.createElement('br', null),
 			_react2.default.createElement(
 				_reactRouter.Link,
-				{ to: '/screen1' },
-				'screen1'
+				{ to: '/blogposts' },
+				'Start Blogging!'
 			),
 			_react2.default.createElement('br', null),
 			_react2.default.createElement(
 				_reactRouter.Link,
-				{ to: '/screen2' },
-				'screen2'
+				{ to: '/allblogposts' },
+				'All Blogs'
 			),
-			_react2.default.createElement('br', null),
-			_react2.default.createElement(
-				_reactRouter.Link,
-				{ to: '/screen3' },
-				'screen3'
-			),
-			_react2.default.createElement('br', null),
 			props.children
 		);
 	};
@@ -129,9 +118,8 @@
 			_react2.default.createElement(
 				_reactRouter.Route,
 				{ path: '/', component: Home },
-				_react2.default.createElement(_reactRouter.Route, { path: '/screen1', component: _Screen2.default }),
-				_react2.default.createElement(_reactRouter.Route, { path: '/screen2', component: _Screen4.default }),
-				_react2.default.createElement(_reactRouter.Route, { path: '/screen3', component: _Screen6.default })
+				_react2.default.createElement(_reactRouter.Route, { path: '/blogposts', component: _BlogPosts2.default }),
+				_react2.default.createElement(_reactRouter.Route, { path: '/allblogposts', component: _AllBlogPosts2.default })
 			)
 		)
 	), document.getElementById('app'));
@@ -28840,6 +28828,10 @@
 	      return Object.assign({}, state, {
 	        isOpen: false
 	      });
+	    case _actions.SUBMIT:
+	      return Object.assign({}, state, {
+	        isOpen: true
+	      });
 	    default:
 	      return state;
 	  }
@@ -28859,81 +28851,130 @@
 	});
 	var OPEN = exports.OPEN = { type: 'button/OPEN' };
 	var CLOSE = exports.CLOSE = { type: 'button/CLOSE' };
+	var SUBMIT = exports.SUBMIT = { type: 'form/SUBMIT' };
 
 /***/ },
 /* 272 */
-/*!*************************!*\
-  !*** ./src/Screen1.jsx ***!
-  \*************************/
+/*!***************************!*\
+  !*** ./src/BlogPosts.jsx ***!
+  \***************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-			value: true
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _BlogForm = __webpack_require__(/*! ./BlogForm.jsx */ 273);
+	
+	var _BlogForm2 = _interopRequireDefault(_BlogForm);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var BlogPosts = function (_Component) {
+		_inherits(BlogPosts, _Component);
+	
+		function BlogPosts(props) {
+			_classCallCheck(this, BlogPosts);
+	
+			var _this = _possibleConstructorReturn(this, (BlogPosts.__proto__ || Object.getPrototypeOf(BlogPosts)).call(this, props));
+	
+			_this.state = {
+				posts: []
+			};
+	
+			return _this;
+		}
+	
+		_createClass(BlogPosts, [{
+			key: 'addNewPost',
+			value: function addNewPost(newPost) {
+				var post = this.posts.push(newPost);
+				console.log(newPost);
+	
+				this.setState({
+					posts: post
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'h1',
+						null,
+						'Blog it!'
+					),
+					_react2.default.createElement(_BlogForm2.default, null)
+				);
+			}
+		}]);
+	
+		return BlogPosts;
+	}(_react.Component);
+	
+	exports.default = BlogPosts;
+
+/***/ },
+/* 273 */
+/*!**************************!*\
+  !*** ./src/BlogForm.jsx ***!
+  \**************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
 	});
 	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 222);
-	
-	var _actions = __webpack_require__(/*! ./actions */ 271);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var mapStateToProps = function mapStateToProps(state) {
-			return {
-					state: state
-			};
-	};
+	exports.default = function (props) {
 	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-			return {
-					open: function open() {
-							return dispatch({ type: _actions.OPEN });
-					},
-					close: function close() {
-							return dispatch({ type: _actions.CLOSE });
-					}
-			};
+		return _react2.default.createElement(
+			"form",
+			{ id: "submitForm", action: "/allblogposts", method: "POST" },
+			_react2.default.createElement(
+				"p",
+				null,
+				"Title:"
+			),
+			_react2.default.createElement("input", { type: "text", name: "blogTitle" }),
+			_react2.default.createElement(
+				"p",
+				null,
+				"Comment:"
+			),
+			_react2.default.createElement("input", { type: "text", name: "blogComment" }),
+			_react2.default.createElement("input", { type: "submit", value: "Submit" })
+		);
 	};
-	
-	var Screen1 = function Screen1(props) {
-			return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-							'h1',
-							null,
-							'SCREEN 1'
-					),
-					_react2.default.createElement(
-							'p',
-							null,
-							props.state.isOpen ? "true" : "false"
-					),
-					_react2.default.createElement(
-							'button',
-							{ onClick: props.open },
-							'OPEN'
-					),
-					_react2.default.createElement(
-							'button',
-							{ onClick: props.close },
-							'CLOSE'
-					)
-			);
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Screen1);
 
 /***/ },
-/* 273 */
-/*!*************************!*\
-  !*** ./src/Screen2.jsx ***!
-  \*************************/
+/* 274 */
+/*!******************************!*\
+  !*** ./src/AllBlogPosts.jsx ***!
+  \******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28950,104 +28991,18 @@
 	
 	exports.default = function (props) {
 		return _react2.default.createElement(
-			'h1',
-			null,
-			'SCREEN 2'
-		);
-	};
-
-/***/ },
-/* 274 */
-/*!*************************!*\
-  !*** ./src/Screen3.jsx ***!
-  \*************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _ScreenTitle = __webpack_require__(/*! ./ScreenTitle.jsx */ 275);
-	
-	var _ScreenTitle2 = _interopRequireDefault(_ScreenTitle);
-	
-	var _ScreenStuff = __webpack_require__(/*! ./ScreenStuff.jsx */ 276);
-	
-	var _ScreenStuff2 = _interopRequireDefault(_ScreenStuff);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = function () {
-		return _react2.default.createElement(
 			'div',
 			null,
-			_react2.default.createElement(_ScreenTitle2.default, null),
-			_react2.default.createElement(_ScreenStuff2.default, null)
+			_react2.default.createElement(
+				'h1',
+				null,
+				'All Blog Posts!'
+			)
 		);
 	};
 
 /***/ },
 /* 275 */
-/*!*****************************!*\
-  !*** ./src/ScreenTitle.jsx ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = function () {
-		return _react2.default.createElement(
-			'h1',
-			null,
-			'TITLE'
-		);
-	};
-
-/***/ },
-/* 276 */
-/*!*****************************!*\
-  !*** ./src/ScreenStuff.jsx ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = function () {
-		return _react2.default.createElement(
-			'p',
-			null,
-			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat quidem libero, voluptatem iste aperiam eum tempore laboriosam, voluptates, voluptatum porro, dicta deleniti animi accusantium debitis sunt hic inventore sequi. Accusantium.'
-		);
-	};
-
-/***/ },
-/* 277 */
 /*!***************************!*\
   !*** ./src/css/style.css ***!
   \***************************/

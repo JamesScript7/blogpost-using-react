@@ -5,13 +5,10 @@ import {Provider} from 'react-redux'
 import { createStore } from 'redux';
 require('./css/style.css')
 
-
 import reducer from './reducers';
 
-
-import Screen1 from './Screen1.jsx'
-import Screen2 from './Screen2.jsx'
-import Screen3 from './Screen3.jsx'
+import BlogPosts from './BlogPosts.jsx';
+import AllBlogPosts from './AllBlogPosts.jsx';
 
 const store = createStore(reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ &&
@@ -19,11 +16,10 @@ const store = createStore(reducer,
   );
 
 const Home =(props)=> <div>
-												<h1>HOME</h1>
-												<Link to="/" >Home?</Link><br/>
-												<Link to="/screen1" >screen1</Link><br/>
-												<Link to="/screen2" >screen2</Link><br/>
-												<Link to="/screen3" >screen3</Link><br/>
+												<h1>"It's Blargin' time!"</h1>
+												<Link to="/">Home</Link><br/>
+												<Link to="/blogposts">Start Blogging!</Link><br/>
+												<Link to="/allblogposts">All Blogs</Link>
 												{props.children}
 											</div>
 	
@@ -33,10 +29,17 @@ render(
 	<Provider store={store}>
 		<Router history={browserHistory}>
 			<Route path="/" component={Home} >
-				<Route path="/screen1" component={Screen1} />	
-				<Route path="/screen2" component={Screen2} />
-				<Route path="/screen3" component={Screen3} />
+				<Route path="/blogposts" component={BlogPosts} />
+				<Route path="/allblogposts" component={AllBlogPosts} />
 			</Route>
 		</Router>
 	</Provider>
 	, document.getElementById('app'));
+
+
+
+
+
+
+
+

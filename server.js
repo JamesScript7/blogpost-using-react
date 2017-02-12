@@ -18,4 +18,15 @@ app.get('*', (req,res)=>{
 	res.sendFile(path.join(__dirname,'public/index.html'))
 })
 
+app.post('/allblogposts', function(req,res) {
+
+  var posts = {
+    title: req.body.title,
+    comment: req.body.comment,
+    date: new Date()
+  }
+
+    res.json(posts);
+});
+
 app.listen(3000,()=>console.log('running on localhost:3000'))

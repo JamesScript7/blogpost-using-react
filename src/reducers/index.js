@@ -1,4 +1,4 @@
-import {OPEN, CLOSE} from '../actions'
+import {OPEN, CLOSE, SUBMIT} from '../actions'
 
 const initialState = {
 	isOpen: false
@@ -16,6 +16,10 @@ export default (state = initialState, action) => {
     case CLOSE:
       return  Object.assign({}, state, {
         isOpen: false
+      })
+    case SUBMIT:
+      return Object.assign({}, state, {
+        isOpen: true
       })
     default:
       return state

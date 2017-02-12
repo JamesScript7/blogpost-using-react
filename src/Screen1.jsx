@@ -7,8 +7,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  open: () =>
-    dispatch({ type: OPEN }),
+  onSubmit: () =>
+    dispatch({ type: SUBMIT,
+    					value: event.inputName.value }),
   close: () =>
     dispatch({ type: CLOSE }),
 });
